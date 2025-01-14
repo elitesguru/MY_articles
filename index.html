@@ -4,163 +4,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article Blog System</title>
+    <title>Professional Article Blog</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
         }
 
-        .article-card {
-            margin-bottom: 20px;
+        .navbar {
+            background: linear-gradient(90deg, #4b6cb7, #182848);
         }
 
-        .comment-section {
-            margin-top: 10px;
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
         }
 
-        .comment {
-            margin-bottom: 10px;
+        .nav-link {
+            color: white;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
         }
 
-        .article-footer {
-            font-size: 0.9rem;
-            color: gray;
+        .nav-link:hover {
+            color: #ffdd57;
         }
 
-        .like-btn {
-            color: #0d6efd;
-            cursor: pointer;
+        .tab-icon {
+            margin-right: 8px;
         }
 
-        .like-btn:hover {
+        .container {
+            margin-top: 20px;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #182848;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ffdd57;
+            text-decoration: none;
+        }
+
+        footer a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 
 <body>
-    <div class="container py-5">
-        <h1 class="text-center mb-4">Article Blog System</h1>
-
-        <!-- Form to Post an Article -->
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">Post a New Article</h5>
-                <form id="articleForm">
-                    <div class="mb-3">
-                        <label for="articleTitle" class="form-label">Title</label>
-                        <input type="text" id="articleTitle" class="form-control" placeholder="Enter the article title"
-                            required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="articleContent" class="form-label">Content</label>
-                        <textarea id="articleContent" class="form-control" rows="5"
-                            placeholder="Write your article here..." required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Post Article</button>
-                </form>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Hale Jaunire</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home" onclick="showTab('home')">
+                            <i class="fas fa-home tab-icon"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#articles" onclick="showTab('articles')">
+                            <i class="fas fa-book-open tab-icon"></i>Articles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#upload" onclick="showTab('upload')">
+                            <i class="fas fa-upload tab-icon"></i>Upload Articles
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#designs" onclick="showTab('designs')">
+                            <i class="fas fa-paint-brush tab-icon"></i>Designs
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <input type="text" class="form-control" placeholder="Search...">
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <!-- Articles Section -->
-        <div id="articles"></div>
+    <!-- Tab Content -->
+    <div class="container">
+        <div id="home" class="tab-content active">
+            <h2>Welcome to Home</h2>
+            <p>This is the home page content.</p>
+        </div>
+
+        <div id="articles" class="tab-content">
+            <h2>Articles</h2>
+            <p>View and explore all articles here.</p>
+        </div>
+
+        <div id="upload" class="tab-content">
+            <h2>Upload Articles</h2>
+            <p>Upload your articles using the form below.</p>
+            <form>
+                <div class="mb-3">
+                    <label for="articleTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="articleTitle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="articleContent" class="form-label">Content</label>
+                    <textarea class="form-control" id="articleContent" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+
+        <div id="designs" class="tab-content">
+            <h2>Designs</h2>
+            <p>Explore creative designs here.</p>
+        </div>
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Hale Jaunire. All rights reserved. <a href="https://dribbble.com/Hale-jaunire">Visit Portfolio</a></p>
+    </footer>
+
     <script>
-        const articlesContainer = document.getElementById('articles');
-
-        // Store articles in an array
-        let articles = [];
-
-        // Function to render articles
-        function renderArticles() {
-            articlesContainer.innerHTML = '';
-            articles.forEach((article, index) => {
-                const articleCard = document.createElement('div');
-                articleCard.className = 'card article-card';
-                articleCard.innerHTML = `
-          <div class="card-body">
-            <h5 class="card-title">${article.title}</h5>
-            <p class="card-text">${article.content}</p>
-            <div class="article-footer">
-              Posted on: ${article.timestamp} <br>
-              <span class="like-btn" onclick="likeArticle(${index})">
-                <i class="far fa-thumbs-up"></i> ${article.likes} Likes
-              </span> |
-              <span class="like-btn" onclick="repostArticle(${index})">
-                <i class="fas fa-retweet"></i> Repost
-              </span>
-            </div>
-            
-            <!-- Comment Section -->
-            <div class="comment-section">
-              <h6>Comments:</h6>
-              <div id="comments-${index}"></div>
-              <textarea id="commentInput-${index}" class="form-control mb-2" placeholder="Add a comment..."></textarea>
-              <button class="btn btn-sm btn-secondary" onclick="addComment(${index})">Post Comment</button>
-            </div>
-          </div>
-        `;
-                articlesContainer.appendChild(articleCard);
-            });
-        }
-
-        // Handle form submission
-        document.getElementById('articleForm').addEventListener('submit', (event) => {
-            event.preventDefault();
-
-            const title = document.getElementById('articleTitle').value;
-            const content = document.getElementById('articleContent').value;
-
-            const newArticle = {
-                title,
-                content,
-                timestamp: new Date().toLocaleString(),
-                likes: 0,
-                comments: []
-            };
-
-            articles.unshift(newArticle);
-            renderArticles();
-
-            // Clear form
-            document.getElementById('articleForm').reset();
-        });
-
-        // Like an article
-        function likeArticle(index) {
-            articles[index].likes++;
-            renderArticles();
-        }
-
-        // Repost an article
-        function repostArticle(index) {
-            const repostedArticle = { ...articles[index], timestamp: new Date().toLocaleString() };
-            articles.unshift(repostedArticle);
-            renderArticles();
-        }
-
-        // Add a comment to an article
-        function addComment(index) {
-            const commentInput = document.getElementById(`commentInput-${index}`);
-            const commentText = commentInput.value.trim();
-
-            if (commentText) {
-                articles[index].comments.push(commentText);
-                commentInput.value = '';
-                renderArticles();
-            }
+        function showTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
         }
     </script>
 </body>
-<footer class='.bg-white'>
-    <div class="container text-center">
-        <p>&copy; 2024 Article System. All rights reserved.</p>
-        <p>Designed by <strong>Hale Jaunire</strong> <i class="bi-brush"></i></p>
-    </div>
-</footer>
 
 </html>
